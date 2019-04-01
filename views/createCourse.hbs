@@ -1,0 +1,43 @@
+{{>header}}
+    <div class="body">
+        <div class="body__header"> 
+            <p class="body__title">Formulario para ingresar nuevo curso</p>
+            <p class="body__subtitle">Utilice este formulario para ingresar la información de un nuevo curso </p>
+        </div>
+        <div class="body__form">
+            <div class="body__input">
+                <label>Id</label>
+                <input type="number" class="form-control" name="id" required />
+            </div>
+            <div class="body__input">
+                <label>Nombre curso</label>
+                <input type="text" class="form-control" name="name" required/>
+            </div>
+            <div class="body__input">
+                <label>Descripción</label>
+                <input type="text" class="form-control" name="description" required/>
+            </div>
+        </div>
+        <div class="body__form">
+            <div class="body__input">
+                <label>Valor</label>
+                <input type="number" class="form-control" name="number" required/>
+            </div>
+            <div class="body__input">
+                <label>Modalidad</label>
+                <select name="modality" class="form-control">
+                    <option>Presencial</option>
+                    <option>virtual</option>
+                </select>
+            </div>
+             <div class="body__input">
+                <label>Intensidad horaria</label>
+                <input type="number" class="form-control" name="intensity" />
+            </div>
+        </div>
+        <div class="body__form">
+            <button class="button body__button--success">Crear curso</button>
+            <button class="button body__button">Cancelar</button>
+        </div>
+    </div>
+{{>footer}}
