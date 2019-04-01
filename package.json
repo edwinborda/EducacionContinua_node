@@ -1,0 +1,17 @@
+{
+  "name": "educacioncontinua",
+  "version": "1.0.0",
+  "description": "Educacion superior t de a, curso node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "educacion"
+  ],
+  "author": "Edwin Borda edwin.borda@outlook.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
