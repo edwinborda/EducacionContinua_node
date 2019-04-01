@@ -2,11 +2,10 @@
 const fs = require('fs');
 const {course} = require('../models/course');
 
-
 let coursesList = [];
 
 const create = (model) => {
-    list();
+    setList();
     let search = coursesList.find(c => c.id == model.id);
     console.log("search:" + search);
     if(search) throw "Curso con ese id ya existe";
@@ -21,7 +20,7 @@ const create = (model) => {
     save();
 }
 
-const list = () => {
+const setList = () => {
     try{
         coursesList = require('../../files/courses.json');
     }
@@ -29,6 +28,12 @@ const list = () => {
         coursesList = [];
     }
 };
+
+const list = () => {
+    setList();
+    
+    return coursesList.filter(c=>c.state == true);
+}
 
 const save = () => {
     let data = JSON.stringify(coursesList);
@@ -40,5 +45,6 @@ const save = () => {
 };
 
 module.exports = {
-    create
+    create,
+    list
 }

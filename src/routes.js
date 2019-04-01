@@ -5,11 +5,11 @@ const routes = (app) => {
         res.render('index');
     });
 
-    app.get('/create', (req, res) => {
-        res.render('createCourse');
+    app.get('/course/create', (req, res) => {
+        res.render('./course/create');
     });
 
-    app.post('/create', (req, res) => {
+    app.post('/course/create', (req, res) => {
         let resp;
         try {
             courseServices.create(req.body);
@@ -24,8 +24,14 @@ const routes = (app) => {
                     open: true
                 };
         }
-        res.render('createCourse',resp);
+        res.render('./course/create',resp);
 
+    });
+
+    app.get('/course/list', (req, res) => {
+        res.render('./course/list', {
+            courses: courseServices.list()
+        });
     });
 }
 

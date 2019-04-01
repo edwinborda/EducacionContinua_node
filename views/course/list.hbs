@@ -1,0 +1,28 @@
+{{>header}}
+    <div class="body">
+        <table class="table body__table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#courses}}
+                    <tr>
+                        <td>
+                            {{name}}
+                        </td>
+                        <td>
+                            {{description}}
+                        </td>
+                        <td>
+                            ${{price: 0.00}}
+                        </td>
+                    </tr>
+                {{/courses}}
+            </tbody>
+        </table>
+    </div>
+{{>footer}}
