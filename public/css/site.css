@@ -22,8 +22,8 @@ body {
 }
 .body {
     margin-top: 14px;
-    min-height: 450px !important;
-    height: 450px;
+    min-height: 400px !important;
+    height: 400px;
 }
 .body__p {
     font-size: 16px;
@@ -32,28 +32,40 @@ body {
 .body__header {
     text-align: center;
 }
-.body__header {
-    text-align: center;
+.body__form {
+    margin: 5px;
+    left: 20%;
+    position: relative;
 }
 .body__title {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: bolder;
 }
 .body__subtitle {
-    font-size: 11px;
+    font-size: 12px;
 }
 .body__input{
+    width: 30%;
     display: inline-block;
+}
+.body__buttons {
+    margin-top: 15px;
+    position: relative;
+    right: 20%;
+    text-align: right;
 }
 .body__button {
     width: 150px;
     color: #FFF;
+    font-weight: bolder;
     border: 1px solid #D9D9D9;
     background: #E4E4E4;
 }
 .body__button--success {
+    width: 150px;
     color: #FFF;
-	background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x;
+    font-weight: bolder;
+	background: #569E3D;
 	border-color: #4A993E;
 }
 .footer {
