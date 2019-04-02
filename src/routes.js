@@ -33,6 +33,21 @@ const routes = (app) => {
             courses: courseServices.list()
         });
     });
+
+    app.get('/course/details',(req, res) => {
+        try{
+            res.render('./course/details', {
+                course: courseServices.getById(req.query.id)
+            });
+        }
+        catch (err) {
+            if(err)
+                res.render('./course/list',{
+                    message: err,
+                    open: true
+                });
+        }
+    });
 }
 
 module.exports = routes;

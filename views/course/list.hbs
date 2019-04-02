@@ -12,13 +12,13 @@
                 {{#courses}}
                     <tr>
                         <td>
-                            {{name}}
+                            <a class="body__link"  href="/course/details?id={{id}}">{{name}}</a> 
                         </td>
                         <td>
                             {{description}}
                         </td>
                         <td>
-                            ${{price: 0.00}}
+                            ${{price}}
                         </td>
                     </tr>
                 {{/courses}}

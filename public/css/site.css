@@ -68,8 +68,36 @@ body {
 	background: #569E3D;
 	border-color: #4A993E;
 }
-.button__table {
+.body__table {
     width: 100%;
+}
+.body__box {
+    border-bottom: 1px black solid;
+    margin: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.body__back {
+    text-align: right;
+    margin-top: 20px;
+    margin-right: 25px; 
+}
+.body__bkey {
+    font-size: 18px;
+    font-weight: bolder;
+}
+.body__bvalue {
+    font-size: 15px;
+}
+
+.body__link {
+    color: #386538;
+}
+
+.body__link:hover {
+    color: #386538;
+    font-weight: bolder;
+    text-decoration: underline;
 }
 .footer {
     border-top: 1px black solid;   

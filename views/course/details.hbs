@@ -1,5 +1,29 @@
 {{>header}}
     <div class="body">
-         aqui hacer el detall del curso
+        {{#course}}
+         <div class="body__box">
+             <label class="label body__bkey">Nombre:</label>
+             <label class="label body__bvalue">{{name}}</label>
+         </div>
+         <div class="body__box">
+             <label class="label body__bkey">Descripción:</label>
+             <label class="label body__bvalue">{{description}}</label>
+         </div>
+         <div class="body__box">
+             <label class="label body__bkey">Valor:</label>
+             <label class="label body__bvalue">{{Price}}</label>
+         </div>
+         <div class="body__box">
+             <label class="label body__bkey">Modalidad:</label>
+             <label class="label body__bvalue">{{modality}}</label>
+         </div>
+         <div class="body__box">
+             <label class="label body__bkey">Intensidad:</label>
+             <label class="label body__bvalue">{{intensity}} h</label>
+         </div>
+         {{/course}}
+         <div class="body__back">
+             <a href="/course/list" class="body__link" >Regresar</a>
+         </div>
     </div>
 {{>footer}}

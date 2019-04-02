@@ -7,7 +7,6 @@ let coursesList = [];
 const create = (model) => {
     setList();
     let search = coursesList.find(c => c.id == model.id);
-    console.log("search:" + search);
     if(search) throw "Curso con ese id ya existe";
 
     course.id = model.id
@@ -24,7 +23,7 @@ const setList = () => {
     try{
         coursesList = require('../../files/courses.json');
     }
-    catch{
+    catch (err) {
         coursesList = [];
     }
 };
@@ -44,7 +43,16 @@ const save = () => {
 
 };
 
+const getById = (id) => {
+    setList();
+    let course = coursesList.find(c=> c.id == id);
+    if(!course) throw "No existe curso";
+
+    return course;
+};
+
 module.exports = {
     create,
-    list
+    list,
+    getById
 }
