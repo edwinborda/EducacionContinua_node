@@ -7,7 +7,7 @@ let coursesList = [];
 const create = (model) => {
     setList();
     let search = coursesList.find(c => c.id == model.id);
-    if(search) throw "Curso con ese id ya existe";
+    if(typeof search != 'undefined') throw "Curso con ese id ya existe";
 
     course.id = model.id
     course.name = model.name,
