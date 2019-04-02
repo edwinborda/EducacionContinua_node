@@ -1,6 +1,6 @@
 /*imports */
 const fs = require('fs');
-const {applicant} = require('../models/applicant');
+let {applicant} = require('../models/applicant');
 
 let applicants = [];
 
@@ -20,7 +20,7 @@ const create = (model) => {
     {
         throw "El aspirante ya esta inscrito en el curso";
     }
-
+    applicant = {};
     applicant.document = model.document;
     applicant.name = model.name;
     applicant.email = model.email;
@@ -38,6 +38,13 @@ const list = () => {
     return applicants;
 }
 
+const getApplicants = (course) => {
+    setList();
+    let applicantList = applicants.filter(a => a.course == course);
+
+    return applicantList;
+}
+
 const save = () => {
     let data = JSON.stringify(applicants);
     fs.writeFile('./files/applicants.json', data, (err) => {
@@ -46,7 +53,16 @@ const save = () => {
     });
 }
 
+const remove = (document, idCourse) => {
+    setList();
+    let result = applicants.filter(it => it.document != document && it.course != idCourse);
+    applicants = result;
+    save();
+}
+
 module.exports = {
     create,
-    list
+    list,
+    getApplicants,
+    remove
 }

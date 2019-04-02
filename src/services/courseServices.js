@@ -1,6 +1,6 @@
 /*imports */
 const fs = require('fs');
-const {course} = require('../models/course');
+let {course} = require('../models/course');
 
 let coursesList = [];
 
@@ -9,6 +9,7 @@ const create = (model) => {
     let search = coursesList.find(c => c.id == model.id);
     if(typeof search != 'undefined') throw "Curso con ese id ya existe";
 
+    course = {};
     course.id = model.id
     course.name = model.name,
     course.description = model.description,

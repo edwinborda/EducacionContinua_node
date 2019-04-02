@@ -50,6 +50,12 @@ const routes = (app) => {
         }
     });
 
+    app.get('/course/applicants', (req, res) => {
+        res.render('./course/applicants',{
+            courses: courseServices.list()
+        })
+    });
+
     /*applicant */
     app.get('/applicant/new', (req, res)=> {
         res.render('./applicant/new', {
@@ -77,6 +83,13 @@ const routes = (app) => {
                 };
         }
         res.render('./applicant/new', resp);
+    });
+
+    app.get('/applicant/delete', (req, res) => {
+        applicantServices.remove(req.query.document)
+        res.render('./course/applicants',{
+            courses: courseServices.list()
+        });
     });
 
 }

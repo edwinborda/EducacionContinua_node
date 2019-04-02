@@ -1,0 +1,27 @@
+{{>header}}
+    <div class="body">
+         <div class="body__header"> 
+            <p class="body__title">Utilice el acordion para ver los inscritos por cada curso</p>
+        </div>
+        <div class="accordion body__accordion" id="accordionCourse">
+            <div class="card body__card">
+                {{#courses}}
+                <div class="card-header body__cardHeader" id="{{@index}}">
+                    <h5 class="mb-0">
+                        <button class="btn nav-link" type="button" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}">
+                            {{name}}
+                         </button>
+                    </h5>
+                </div>
+                <div id="collapse{{@index}}" class="collapse show" aria-labelledby="{{@index}}" data-parent="#accordionCourse">
+                    <div class="card-body body__cardBody">
+                        {{>card idcourse = id}}
+                    </div>
+                </div>
+                {{/courses}}
+            </div>
+        </div>
+    </div>
+
+    
+{{>footer}}

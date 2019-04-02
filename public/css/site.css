@@ -107,6 +107,10 @@ body {
     font-weight: bolder;
     text-decoration: underline;
 }
+
+.body__cardHeader {
+    background-color: #272c33;
+}
 .footer {
     border-top: 1px black solid;   
 }
