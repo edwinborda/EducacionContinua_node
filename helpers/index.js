@@ -1,5 +1,5 @@
 const hbs = require('hbs');
-const {applicantServices} = require('../src/services/services');
+const {applicantServices} = require('../src/services');
 
 hbs.registerHelper('applicantsLst', (id) => {
     let list = applicantServices.getApplicants(id);
