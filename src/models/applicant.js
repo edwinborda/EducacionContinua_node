@@ -1,11 +1,29 @@
-let applicant = {
-    document: 0,
-    name : '',
-    email: '',
-    phone: '',
-    course: ''
-};
+const mongoose = require('mongoose')
+const Schema = monogoose.Schema
 
-module.exports = {
-    applicant
-}
+const applicantSchema = new Schema({
+    document: {
+        type: Number,
+        require: true
+    },
+    name : {
+        type: String,
+        require: true
+    },
+    email: {
+        type: String,
+        require: true
+    },
+    phone: {
+        type: String,
+        require: true
+    },
+    course: {
+        type: String,
+        require: true
+    }
+});
+
+const applicant = mongoose.model("Applicants", applicantSchema);
+
+module.exports =  applicant;

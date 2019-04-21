@@ -9,40 +9,37 @@ const create = (model) => {
     let search = coursesList.find(c => c.id == model.id);
     if(typeof search != 'undefined') throw "Curso con ese id ya existe";
 
-    course = {};
-    course.id = model.id
-    course.name = model.name,
-    course.description = model.description,
-    course.price = model.price,
-    course.modality = model.modality;
-    course.intensity = model.intensity;
-    coursesList.push(course);
-    save();
+    course = new course({
+        id: model.id,
+        name: model.name,
+        description: model.description,
+        price: model.price,
+        modality: model.modality,
+        intensity: model.intensity 
+    });
+    
+    course.save((err, result)=> {
+        if(err)
+        {
+            console.log('Error Save Course');
+        }
+    });
 }
 
 const setList = () => {
-    try{
-        coursesList = require('../../files/courses.json');
-    }
-    catch (err) {
-        coursesList = [];
-    }
+    course.find({}).exec((err, result)=> {
+        if(err) {
+            console.log('Error: Can not find any course ');
+        }
+
+        coursesList = result;
+    });
 };
 
 const list = () => {
     setList();
-    
     return coursesList.filter(c=>c.state == true);
 }
-
-const save = () => {
-    let data = JSON.stringify(coursesList);
-    fs.writeFile('./files/courses.json', data, (err) => {
-        if (err) throw err;
-        console.log('File has created successfully');
-    });
-
-};
 
 const getById = (id) => {
     setList();

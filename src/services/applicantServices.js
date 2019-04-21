@@ -1,16 +1,15 @@
 /*imports */
 const fs = require('fs');
 let {applicant} = require('../models/applicant');
-
 let applicants = [];
-
 const setList = () => {
-    try {
-        applicants = require('../../files/applicants.json');
-    }
-    catch (err) {
-        applicants = [];
-    }
+    applicant.find({}).exec((err, result) => {
+        if(err) {
+           return console.log('Err: Can not possible read info');
+        }
+
+        applicants =  result;
+    });
 }
 
 const create = (model) => {
@@ -20,15 +19,19 @@ const create = (model) => {
     {
         throw "El aspirante ya esta inscrito en el curso";
     }
-    applicant = {};
-    applicant.document = model.document;
-    applicant.name = model.name;
-    applicant.email = model.email;
-    applicant.phone = model.phone;
-    applicant.course = model.course;
-
-    applicants.push(applicant);
-    save();
+    applicant = new applicant({
+        document: model.document,
+        name: model.name,
+        email: model.email,
+        phone: model.phone,
+        course: model.course
+    });
+    applicants.save((err, result)=> {
+        if(err)
+        {
+            return console.log('Error Save Applicants');
+        }
+    });
 
 }
 
@@ -45,19 +48,13 @@ const getApplicants = (course) => {
     return applicantList;
 }
 
-const save = () => {
-    let data = JSON.stringify(applicants);
-    fs.writeFile('./files/applicants.json', data, (err) => {
-        if (err) throw err;
-        console.log('File has created successfully');
-    });
-}
-
 const remove = (document, idCourse) => {
-    setList();
-    let result = applicants.filter(it => it.document != document && it.course != idCourse);
-    applicants = result;
-    save();
+    
+    applicant.findOneAndDelete({document: document, course: idCourse}, (err, result)=> {
+        if (err) {
+            return console.log('Err: can not delete element');
+        }
+    });
 }
 
 module.exports = {

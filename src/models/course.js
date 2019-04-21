@@ -1,13 +1,37 @@
-let course = {
-    id: 0,
-    name: '',
-    description: '',
-    price: 0,
-    modality: '',
-    intensity:0,
-    state: true
-};
+const mongoose = require('mongoose')
+const Schema = monogoose.Schema
 
-module.exports = {
-    course
-}
+const courseSchema = new Schema({
+    id: {
+        type: String,
+        require: true
+    },
+    name: {
+        type: String,
+        require: true
+    },
+    description: {
+        type: String,
+        require: true
+    },
+    price: {
+        type: Number,
+        require: true
+    },
+    modality: {
+        type: Number,
+        require: false
+    },
+    intensity:{
+        type: Number,
+        require: false
+    },
+    state: {
+        type: Boolean,
+        require: true
+    }
+});
+
+const course = monogoose.model("Courses", courseSchema);
+
+module.exports =  course

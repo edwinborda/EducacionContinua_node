@@ -18,7 +18,12 @@ app.use(express.static(publicPath));
 app.use(bodyParser.urlencoded({extended:false}));
 
 /*Connect to db */
-mongoose.connect('mongodb://localhost/educacionContinua', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/educacionContinua', {useNewUrlParser: true}, (err, result) => {
+    if (err) {
+        return console.log(err);
+    }
+    console.log("Conectado a db");
+});
 
 /*routing */
 app.use(require('./routes'));
