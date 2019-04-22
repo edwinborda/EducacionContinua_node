@@ -1,9 +1,9 @@
 /*imports */
-let {user} = require('../models/user');
+let User = require('../models/user');
 let applicants = [];
 
 const setList = () => {
-    user.find({}).exec((err, result) => {
+    User.find({}).exec((err, result) => {
         if(err) {
            return console.log('Err: Can not possible read info');
         }
@@ -19,7 +19,7 @@ const create = (model) => {
     {
         throw "El aspirante ya esta inscrito en el curso";
     }
-    let user_ = new applicant({
+    let user_ = new User({
         document: model.document,
         name: model.name,
         email: model.email,
@@ -50,7 +50,7 @@ const getApplicants = (course) => {
 
 const remove = (document, idCourse) => {
     
-    user.findOneAndDelete({document: document, course: idCourse}, (err, result)=> {
+    User.findOneAndDelete({document: document, course: idCourse}, (err, result)=> {
         if (err) {
             return console.log('Err: can not delete element');
         }

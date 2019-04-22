@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Educacion superior t de a, curso node js",
   "scripts": {
+    "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -15,6 +16,7 @@
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
     "hbs": "^4.0.4",
     "jquery": "^3.3.1",
     "mongoose": "^5.5.2",

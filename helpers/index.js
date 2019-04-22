@@ -5,7 +5,7 @@ hbs.registerHelper('applicantsLst', (id) => {
     let list = applicantServices.getApplicants(id);
     let text;
     list.forEach(it => {
-        text =  `<div class="card" style="width: 18rem;">`+
+        text +=  `<div class="card" style="width: 18rem;">`+
                     `<div class="card-body">` +
                         `<h5 class="card-title">${it.name}</h5>`+
                         `<p class="card-text">${it.email}</p>`+
@@ -16,4 +16,12 @@ hbs.registerHelper('applicantsLst', (id) => {
     });
 
     return text;
+});
+
+hbs.registerHelper('ifApplicant', function(arg1, options) {
+    return (arg1 === 'Aplicante') ? options.fn(this) :options.inverse(this);
+});
+
+hbs.registerHelper('ifCoordinator', function(arg1, options) {
+    return (arg1 === 'Coordinator')? options.fn(this) :options.inverse(this);
 });

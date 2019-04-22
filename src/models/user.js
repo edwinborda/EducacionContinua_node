@@ -1,7 +1,6 @@
-const mongoose = require('mongoose')
-var uniqueValidator = require('mongoose-unique-validator')
-
-const Schema = monogoose.Schema
+const mongoose = require('mongoose');
+var uniqueValidator = require('mongoose-unique-validator');
+const Schema = mongoose.Schema
 
 const userSchema = new Schema({
     document: {
@@ -27,9 +26,9 @@ const userSchema = new Schema({
         require: true
     },
     userType: {
-        type: string,
+        type: String,
         enum: {
-            value: ['Aplicante', 'Coordinador'],
+            values: ['Aplicante', 'Coordinador'],
             message: 'Tipo de usuario no valido'
         },
         default: 'Aplicante'
@@ -40,6 +39,6 @@ const userSchema = new Schema({
 });
 
 userSchema.plugin(uniqueValidator);
-const user = mongoose.model("Applicants", userSchema);
 
-module.exports =  user;
+const User = mongoose.model("Users", userSchema);
+module.exports =  User;

@@ -1,10 +1,10 @@
 {{>header}}
     <div class="body">
-         {{#message}}
-        <div class="body__alert alert alert-success" role="alert">
-            {{message}}
-        </div>
-        {{/message}}
+         {{#if message}}
+            <div class="body__alert alert alert-success" role="alert">
+                {{message}}
+            </div>
+        {{/if}}
          <div class="body__header"> 
             <p class="body__title">Formulario para registrar un usuario</p>
             <p class="body__subtitle">Utilice este formulario para ingresar un nuevo aplicante a un curso </p>
@@ -12,10 +12,20 @@
         <form action="/newUser" method="POST">
             <div class="body__form--inline">
                 <div class="body__input">
+                    <label>Usuario</label>
+                    <input type="text" class="form-control" name="user" required />
+                </div>
+                <div class="body__input">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" required/>
+                </div>
+            </div>
+            <div class="body__form--inline">
+                <div class="body__input">
                     <label>Documento de identidad</label>
                     <input type="number" class="form-control" name="document" required />
                 </div>
-                <div class="body__form--inline">
+                <div class="body__input">
                     <label>Nombre aspirante</label>
                     <input type="text" class="form-control" name="name" required/>
                 </div>
@@ -25,9 +35,20 @@
                     <label>correo electrónico</label>
                     <input type="email" class="form-control" name="email" required/>
                 </div>
-                <div class="body__form--inline">
+                <div class="body__input">
                     <label>Telefóno</label>
                     <input type="number" class="form-control" name="phone" required/>
+                </div>
+            </div>
+              <div class="body__form--inline">
+                <div class="body__input">
+                    <label>Tipo de usuario</label>
+                    <Select name="userType" class="form-control">
+                        <option value="Aplicante">Aplicante</option>
+                        <option value="Aplicante">Coordinador</option>
+                    </Select>
+                </div>
+                <div class="body__input">
                 </div>
             </div>
             <div class="body__buttons">

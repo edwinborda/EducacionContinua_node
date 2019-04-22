@@ -1,6 +1,5 @@
 /*imports */
-let {course} = require('../models/course');
-
+let Course = require('../models/course');
 let coursesList = [];
 
 const create = (model) => {
@@ -8,7 +7,7 @@ const create = (model) => {
     let search = coursesList.find(c => c.id == model.id);
     if(typeof search != 'undefined') throw "Curso con ese id ya existe";
 
-    course = new course({
+    let course_ = new Course({
         id: model.id,
         name: model.name,
         description: model.description,
@@ -17,7 +16,7 @@ const create = (model) => {
         intensity: model.intensity 
     });
     
-    course.save((err, result)=> {
+    course_.save((err, result)=> {
         if(err)
         {
             console.log('Error Save Course');

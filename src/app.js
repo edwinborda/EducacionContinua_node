@@ -12,21 +12,19 @@ app.use('/js', express.static(node_modulesPath + '/popper.js/dist'));
 app.use('/js', express.static(node_modulesPath + '/bootstrap/dist/js'));
 /*Custom static files */
 app.use(express.static(publicPath));
-
 /*body parser */
 app.use(bodyParser.urlencoded({extended:false}));
-
 /*Connect to db */
-mongoose.connect('mongodb://localhost/educacionContinua', {useNewUrlParser: true}, (err, result) => {
+mongoose.connect('mongodb://localhost:27017/educacionContinua', {useNewUrlParser: true}, (err, result) => {
     if (err) {
         return console.log(err);
     }
     console.log("Conectado a db");
 });
-
 /*routing */
 app.use(require('./routes'));
-
-app.listen(3000, ()=>{
-    console.log('listen on port 3000');
+/*Up the services */
+const port = process.env.PORT || 3000;
+app.listen(port, ()=>{
+    console.log(`listen on port ${port}`);
 });

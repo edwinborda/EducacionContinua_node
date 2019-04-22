@@ -16,12 +16,15 @@
         <div class="navbar navbar-expand-lg menu menu__navbar">
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
+                {{#ifApplicant locals.userType}}
                   <li class="nav-item">
                       <a class="nav-link" href="/course/create">Crear cursos</a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="/course/list">Listar cursos</a>
                   </li>
+                {{/ifApplicant }}
+                {{#ifCoordinator locals.userType}}
                   <li class="nav-item">
                       <a class="nav-link" href="/applicant/new">Proceso de inscripción</a>
                   </li>
@@ -29,6 +32,16 @@
                       <a class="nav-link" href="/course/applicants">Ver inscritos</a>
                   </li>
                 </ul>
+                {{else}}
+                <li class="nav-item">
+                        
+                </li>
+                {{/ifCoordinator}}
+                {{#if session}}
+                <form action="/exit" method="get">
+                    <button type="submit" class="button body__button--success">Salir</button>
+                </form>
+                {{/if}}
             </div>
         </div> 
     </header>

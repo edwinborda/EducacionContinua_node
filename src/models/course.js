@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 var uniqueValidator = require('mongoose-unique-validator')
-const Schema = monogoose.Schema
+const Schema = mongoose.Schema
 
 const courseSchema = new Schema({
     id: {
@@ -40,6 +40,6 @@ const courseSchema = new Schema({
 
 courseSchema.plugin(uniqueValidator);
 
-const course = monogoose.model("Courses", courseSchema);
+const Course = mongoose.model("Courses", courseSchema);
 
-module.exports =  course
+module.exports =  Course

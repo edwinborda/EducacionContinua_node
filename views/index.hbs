@@ -7,18 +7,24 @@
           <div class="body__form">
                 <div class="body__input">
                     <label>Usuario</label>
-                    <input type="number" class="form-control" name="user" required />
+                    <input type="text" class="form-control" name="user" required />
                 </div>
+            </div>
+            <div class="body__form">
                 <div class="body__input">
                     <label>Password</label>
                     <input type="password" class="form-control" name="password" required/>
                 </div>
             </div>
+             <div class="body__buttons">
+                <button type="submit" class="button body__button--success">Iniciar Sesion</button>
+                <a href="/newUser" class="button_link">Quiero registrarme</button>
+            </div>
       </form>
-       {{#error}}
+       {{#if error}}
         <div class="body__alert alert alert-danger" role="alert">
             {{error}}
         </div>
-        {{/error}}
+        {{/if}}
   </div>
 {{>footer}}
