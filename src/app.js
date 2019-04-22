@@ -14,17 +14,19 @@ app.use('/js', express.static(node_modulesPath + '/bootstrap/dist/js'));
 app.use(express.static(publicPath));
 /*body parser */
 app.use(bodyParser.urlencoded({extended:false}));
+/*routing */
+app.use(require('./routes'));
+/*enviroments vars */
+const port = process.env.PORT || 3000;
+const URLDB = process.env.URLDB || 'mongodb://localhost:27017/educacionContinua'
 /*Connect to db */
-mongoose.connect('mongodb://localhost:27017/educacionContinua', {useNewUrlParser: true}, (err, result) => {
+mongoose.connect(URLDB, {useNewUrlParser: true}, (err, result) => {
     if (err) {
         return console.log(err);
     }
     console.log("Conectado a db");
 });
-/*routing */
-app.use(require('./routes'));
 /*Up the services */
-const port = process.env.PORT || 3000;
 app.listen(port, ()=>{
     console.log(`listen on port ${port}`);
-});
+}); 
