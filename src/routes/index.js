@@ -3,7 +3,8 @@ const app = express()
 const hbs = require('hbs');
 const path = require('path');
 const partialsPath = path.join(__dirname, '../../partials')
-const {courseServices, applicantServices} = require('../services');
+const {courseServices, applicantServices, userServices} = require('../services');
+
 require('../../helpers');
 
 /*handlebars */
@@ -13,6 +14,37 @@ hbs.registerPartials(partialsPath);
 /*Routes */
 app.get('/', (req, res) => {
     res.render('index');
+});
+
+app.post('/', (req, res) => {
+    let result = userServices.validateSession({
+        user: req.body.user,
+        password: req.body.password
+    });
+    if(result)
+        res.render('welcome');
+    else
+        res.render('index', {
+            error: 'Usuario o contraseña no coincide'
+        });
+});
+
+/*Register new user */
+app.get('/newUser', (req, res)=> {
+    res.render('newUsers')
+});
+app.post('/newUser', (req, res)=> {
+    userServices.create({
+        document: model.document,
+        name: model.name,
+        email: model.email,
+        phone: model.phone,
+        user: model.user,
+        password: model.password
+    })
+    res.render('newUsers', {
+        message: 'usuario creado'
+    })
 });
 
 /*courses */

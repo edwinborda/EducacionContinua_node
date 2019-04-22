@@ -1,5 +1,4 @@
 /*imports */
-const fs = require('fs');
 let {course} = require('../models/course');
 
 let coursesList = [];

@@ -3,9 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const node_modulesPath = path.join(__dirname, '../node_modules');
-const publicPath = path.join(__dirname, '../public')
-const mongoose = require('mongoose')
-
+const publicPath = path.join(__dirname, '../public');
+const mongoose = require('mongoose');
 /*bootstrap modules */
 app.use('/css', express.static(node_modulesPath + '/bootstrap/dist/css'));
 app.use('/js', express.static(node_modulesPath + '/jquery/dist'));

@@ -33,12 +33,17 @@ body {
 .body__header {
     text-align: center;
 }
-.body__form {
+.body__form--inline {
     margin: 5px;
     left: 25%;
     right: 25%;
     position: relative;
     width: 50%;
+}
+
+.body__form {
+    margin: 5px;
+    width: 100%;
 }
 
 .body__title {

@@ -1,5 +1,24 @@
 {{>header}}
   <div class="body">
-    <p class="body__p">Bienvenidos al sitio de educación continua del Tecnológico de Antioquia</p>
+     <div class="body__header"> 
+            <p class="body__title">Iniciar sesión</p>
+      </div>
+      <form action="/index" method="POST">
+          <div class="body__form">
+                <div class="body__input">
+                    <label>Usuario</label>
+                    <input type="number" class="form-control" name="user" required />
+                </div>
+                <div class="body__input">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" required/>
+                </div>
+            </div>
+      </form>
+       {{#error}}
+        <div class="body__alert alert alert-danger" role="alert">
+            {{error}}
+        </div>
+        {{/error}}
   </div>
 {{>footer}}

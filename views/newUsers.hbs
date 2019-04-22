@@ -1,10 +1,15 @@
 {{>header}}
     <div class="body">
+         {{#message}}
+        <div class="body__alert alert alert-success" role="alert">
+            {{message}}
+        </div>
+        {{/message}}
          <div class="body__header"> 
-            <p class="body__title">Formulario para registrar un aplicante</p>
+            <p class="body__title">Formulario para registrar un usuario</p>
             <p class="body__subtitle">Utilice este formulario para ingresar un nuevo aplicante a un curso </p>
         </div>
-        <form action="/applicant/new" method="POST">
+        <form action="/newUser" method="POST">
             <div class="body__form--inline">
                 <div class="body__input">
                     <label>Documento de identidad</label>
@@ -23,17 +28,6 @@
                 <div class="body__form--inline">
                     <label>Telefóno</label>
                     <input type="number" class="form-control" name="phone" required/>
-                </div>
-            </div>
-            <div class="body__form--inline">
-                <div class="body__input--100">
-                    <label>Cursos disponibles</label>
-                    <select name="course" class="form-control" required>
-                        <option>-</option>
-                        {{#courses}}
-                        <option value={{id}}>{{name}}</option>
-                         {{/courses}}
-                    </select>
                 </div>
             </div>
             <div class="body__buttons">
