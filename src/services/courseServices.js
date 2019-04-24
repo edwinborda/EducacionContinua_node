@@ -25,7 +25,7 @@ const create = (model) => {
 }
 
 const setList = () => {
-    course.find({}).exec((err, result)=> {
+    Course.find({}).exec((err, result)=> {
         if(err) {
             console.log('Error: Can not find any course ');
         }

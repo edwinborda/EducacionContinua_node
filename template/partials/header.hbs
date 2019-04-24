@@ -12,35 +12,33 @@
   <div class="container-fluid">
     <header class="header">
         <h2>Educación continua</h2>
-        <h5>Tecnológico de Antioquia</h5>
+        <h5>Tecnológico de Antioquia {{sessionBool}}</h5>
         <div class="navbar navbar-expand-lg menu menu__navbar">
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
-                {{#ifApplicant locals.userType}}
+                {{#ifCoordinator userType}}
                   <li class="nav-item">
                       <a class="nav-link" href="/course/create">Crear cursos</a>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="/course/list">Listar cursos</a>
+                 <li class="nav-item">
+                      <a class="nav-link" href="/course/applicants">Ver inscritos</a>
                   </li>
-                {{/ifApplicant }}
-                {{#ifCoordinator locals.userType}}
+                {{/ifCoordinator }}
+                {{#ifApplicant userType}}
                   <li class="nav-item">
                       <a class="nav-link" href="/applicant/new">Proceso de inscripción</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/course/applicants">Ver inscritos</a>
+                      <a class="nav-link" href="/course/list">Lista cursos</a>
                   </li>
+                {{/ifApplicant}}
                 </ul>
-                {{else}}
-                <li class="nav-item">
-                        
-                </li>
-                {{/ifCoordinator}}
                 {{#if session}}
-                <form action="/exit" method="get">
-                    <button type="submit" class="button body__button--success">Salir</button>
-                </form>
+                <div class="body__align--rigth">
+                    <form action="/exit" method="get">
+                        <button type="submit" class="button_link btn btn-link ">Salir</button>
+                    </form>
+                </div>
                 {{/if}}
             </div>
         </div> 

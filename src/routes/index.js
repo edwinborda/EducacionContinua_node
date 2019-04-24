@@ -2,35 +2,21 @@ const express = require('express');
 const app = express()
 const hbs = require('hbs');
 const path = require('path');
-const partialsPath = path.join(__dirname, '../../partials')
+const partialsPath = path.join(__dirname, '../../template/partials')
+const viewsPath = path.join(__dirname, '../../template/views');
 const {courseServices, applicantServices, userServices} = require('../services');
-const session = require('express-session');
 const bcrypt = require('bcrypt');
 require('../../helpers');
-
+const session = require('express-session');
 /*handlebars */
-app.set('view engine', 'hbs')
-hbs.registerPartials(partialsPath);
-/*Session */
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-}));
-app.use((req, res, next) => {
-    if (req.session.usuario) {
-        res.locals.session = true,
-        res.locals.name = req.session.name
-        res.locals.userType = req.session.userType
-    }
-    next();
-});
+app.set('view engine', 'hbs');
+app.set('views', viewsPath);
+hbs.registerPartials(partialsPath); //partials
 /*Routes */
 app.get('/', (req, res) => {
     res.render('index');
 });
-app.post('/index', (req, res) => {
+app.post('/', (req, res) => {
     userServices.validateSession({
         user: req.body.user
     }).exec((err, result) => {
@@ -53,6 +39,11 @@ app.post('/index', (req, res) => {
         req.session.user = result.id;
         req.session.name = result.name;
         req.session.userType = result.userType;
+        /*Initialize res.locals */
+        res.locals.session = true;
+        res.locals.name = result.name;
+        res.locals.userType = result.userType; 
+        
         res.render('welcome', {
             name: result.name
         });
@@ -146,10 +137,10 @@ app.get('/course/applicants', (req, res) => {
 });
 /*applicant */
 app.get('/applicant/new', (req, res)=> {
-    if (!req.session.user && req.session.userType !== 'Aplicante') {
-        res.redirect('/');
-        return;
-    }
+    // if (!req.session.user && req.session.userType !== 'Aplicante') {
+    //     res.redirect('/');
+    //     return;
+    // }
     res.render('./applicant/new', {
         courses: courseServices.list()
     })

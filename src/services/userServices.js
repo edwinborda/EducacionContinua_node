@@ -1,6 +1,6 @@
 /*Imports */
 let User = require('../models/user');
-
+const bcrypt = require('bcrypt');
 const createUser = (model) => {
 
     let user_ = new User({

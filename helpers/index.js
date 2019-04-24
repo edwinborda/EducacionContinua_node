@@ -23,5 +23,5 @@ hbs.registerHelper('ifApplicant', function(arg1, options) {
 });
 
 hbs.registerHelper('ifCoordinator', function(arg1, options) {
-    return (arg1 === 'Coordinator')? options.fn(this) :options.inverse(this);
+    return (arg1 === 'Coordinador')? options.fn(this) :options.inverse(this);
 });

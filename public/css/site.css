@@ -125,3 +125,8 @@ body {
 .footer__copyright {
     font-size: 9px;
 }
+
+.body__align--rigth {
+    position: relative;
+    left: 82%;
+}
