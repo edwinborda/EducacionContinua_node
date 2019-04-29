@@ -99,23 +99,23 @@ app.post('/course/create', (req, res) => {
     res.render('./course/create',resp);
 
 });
-app.get('/course/list', (req, res) => {
+app.get('/course/list', async (req, res) => {
     if (!req.session.user) {
         res.redirect('/');
         return;
     }
     res.render('./course/list', {
-        courses: courseServices.list()
+        courses: await courseServices.list()
     });
 });
-app.get('/course/details',(req, res) => {
+app.get('/course/details',async (req, res) => {
     if (!req.session.user) {
         res.redirect('/');
         return;
     }
     try{
         res.render('./course/details', {
-            course: courseServices.getById(req.query.id)
+            course: await courseServices.getById(req.query.id)
         });
     }
     catch (err) {
@@ -126,29 +126,44 @@ app.get('/course/details',(req, res) => {
             });
     }
 });
-app.get('/course/applicants', (req, res) => {
+app.get('/course/applicants', async (req, res) => {
     if (!req.session.user && req.session.userType !== 'Coordinadores') {
         res.redirect('/');
         return;
     }
     res.render('./course/applicants',{
-        courses: courseServices.list()
+        courses: await courseServices.list()
     })
 });
 /*applicant */
-app.get('/applicant/new', (req, res)=> {
-    // if (!req.session.user && req.session.userType !== 'Aplicante') {
-    //     res.redirect('/');
-    //     return;
-    // }
+app.get('/applicant/new', async (req, res) => {
+    if (!req.session.user && req.session.userType !== 'Aplicante') {
+        res.redirect('/');
+        return;
+    }
+    if (!req.session.user) {
+        res.redirect('/');
+        return;
+    }
+    var model = await applicantServices.getById(req.session.user);
+    
     res.render('./applicant/new', {
-        courses: courseServices.list()
+        courses: await courseServices.list(),
+        id: model._id,
+        document: model.document,
+        name: model.name,
+        email: model.email,
+        phone: model.phone
     })
 });
 app.post('/applicant/new', (req, res)=> {
     let resp;
     try {
-        applicantServices.create(req.body);
+        if (!req.session.user)
+            applicantServices.create(req.body);
+        else
+            applicantServices.update(req.body);
+
         resp = {
             courses: courseServices.list(),
             message: 'El aspirante quedó inscrito',

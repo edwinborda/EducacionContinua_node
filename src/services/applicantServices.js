@@ -1,13 +1,13 @@
 /*imports */
 let User = require('../models/user');
+let ObjectID = require('mongoose').ObjectID;
 let applicants = [];
 
-const setList = () => {
-    User.find({}).exec((err, result) => {
+const setList = async () => {
+    await User.find({}).exec((err, result) => {
         if(err) {
            return console.log('Err: Can not possible read info');
         }
-
         applicants =  result;
     });
 }
@@ -37,7 +37,6 @@ const create = (model) => {
 
 const list = () => {
     setList();
-
     return applicants;
 }
 
@@ -57,9 +56,30 @@ const remove = (document, idCourse) => {
     });
 }
 
+const getById = (id) => {
+    return User.findById(id).then((res) => {
+        if(!res) throw 'No existe aplicante';
+        return res;
+    });
+};
+
+const update = (model) => {
+    User.updateOne({_id: ObjectID(model.id)}, {
+        document: model.document,
+        name: model.name,
+        email: model.email,
+        phone: model.phone,
+        course: model.course
+    }, (err) => {
+        if (err) throw 'No es posible actualizar' + err;
+    });
+}
+
 module.exports = {
     create,
     list,
     getApplicants,
-    remove
+    remove,
+    getById,
+    update
 }
